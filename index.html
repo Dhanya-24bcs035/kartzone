@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>KartZone – Online Shopping</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f1f3f6;--card:#fff;--ink:#212121;--mute:#6b7280;--line:#e5e7eb;--blue:#2874f0;--yel:#ffe11b;--org:#fb641b;--grn:#178a3f;--red:#d33;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141c;--card:#1a202c;--ink:#eceff5;--mute:#9aa4b8;--line:#2b3446;--grn:#4cc98a}}
+:root[data-theme="dark"]{--bg:#10141c;--card:#1a202c;--ink:#eceff5;--mute:#9aa4b8;--line:#2b3446;--grn:#4cc98a}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--yel);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--blue);color:#fff;display:flex;gap:14px;align-items:center;padding:10px 16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:22px;font-style:italic;cursor:pointer}.logo small{display:block;font-size:11px;font-weight:400;color:var(--yel)}
+.sb{flex:1;min-width:200px;display:flex;background:#fff;border-radius:3px}
+.sb input{flex:1;border:0;padding:10px 12px;background:transparent;color:#212121;min-width:0}
+.sb button{border:0;background:transparent;color:var(--blue);padding:0 14px;font-weight:700}
+.hb{background:none;border:0;color:#fff;font-weight:600;padding:6px 8px}
+.hb b{background:var(--red);border-radius:99px;padding:0 6px;font-size:12px;margin-left:3px}
+.cats{background:var(--card);display:flex;gap:6px;overflow-x:auto;padding:8px 12px;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.cats button{border:0;background:none;display:flex;flex-direction:column;align-items:center;min-width:76px;font-weight:600;padding:4px 8px;border-radius:8px}
+.cats button span{font-size:28px}
+main{max-width:1240px;margin:0 auto;padding:12px}
+.ban{overflow:hidden;border-radius:6px;position:relative}
+.trk{display:flex;transition:transform .5s}
+.sl{min-width:100%;height:190px;padding:26px 34px;display:flex;flex-direction:column;justify-content:center;color:#fff}
+.sl h2{margin:0;font-size:clamp(22px,4vw,38px)}.sl p{margin:4px 0 12px;font-size:16px}
+.sl button{align-self:flex-start;background:var(--yel);color:#212121;border:0;padding:8px 18px;border-radius:3px;font-weight:700}
+.dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px}
+.dots i{width:8px;height:8px;border-radius:9px;background:rgba(255,255,255,.5)}.dots i.on{background:#fff;width:20px}
+.sec{background:var(--card);margin:12px 0;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sec>h3{margin:0;padding:14px 16px;font-size:20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.sec>h3 small{font-size:13px;color:var(--mute);font-weight:400}
+.row{display:flex;overflow-x:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.pc{padding:14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);cursor:pointer;position:relative;min-width:200px;display:flex;flex-direction:column;gap:3px}
+.pc:hover{box-shadow:0 3px 12px rgba(0,0,0,.15);z-index:1}
+.pic{height:150px;display:grid;place-items:center;font-size:72px;border-radius:6px;margin-bottom:6px}
+.pc h4{margin:0;font-size:14px;font-weight:600}
+.w{position:absolute;top:18px;right:18px;background:var(--card);border:1px solid var(--line);border-radius:99px;width:30px;height:30px}
+.rt{display:inline-block;background:var(--grn);color:#fff;font-size:12px;font-weight:700;padding:1px 6px;border-radius:3px}
+.pr{font-size:17px;font-weight:700}.mrp{color:var(--mute);text-decoration:line-through;margin:0 6px}.off{color:var(--grn);font-weight:700}
+.mute{color:var(--mute)}
+.btn{border:0;border-radius:3px;padding:12px 24px;font-weight:700;color:#fff;background:var(--org)}.btn.b{background:var(--yel);color:#212121}.btn.l{background:var(--blue)}
+.btn.o{background:transparent;color:var(--blue);border:1px solid var(--line)}
+.lay{display:grid;grid-template-columns:240px 1fr;gap:12px;align-items:start}
+.fl{background:var(--card);padding:14px;border-radius:4px;display:grid;gap:10px;position:sticky;top:70px}
+.fl h5{margin:0;font-size:13px}.fl label{display:flex;gap:6px;align-items:center}.fl input[type=range]{width:100%}
+.tabs{display:flex;gap:16px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs button{background:none;border:0;padding:0 0 4px;color:var(--mute);font-weight:600}.tabs .on{color:var(--blue);border-bottom:2px solid var(--blue)}
+.pd{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:24px;padding:20px}
+.big{height:340px;font-size:140px;display:grid;place-items:center;border-radius:8px}
+.pd h1{font-size:22px;margin:0 0 6px;font-weight:600}
+.pd ul{padding-left:18px;margin:6px 0}
+.cw{display:grid;grid-template-columns:1fr 340px;gap:12px;align-items:start}
+.ci{display:flex;gap:14px;padding:16px;border-bottom:1px solid var(--line)}
+.ci .t{width:84px;height:84px;font-size:44px;display:grid;place-items:center;border-radius:6px;flex:none}
+.q button{width:28px;height:28px;border-radius:99px;border:1px solid var(--line);background:none}
+.pd2 div{display:flex;justify-content:space-between;padding:6px 0}.pd2 .t{border-top:1px dashed var(--line);font-weight:700;font-size:17px;margin-top:6px;padding-top:12px}
+.pad{padding:16px}.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form input,.pin input{padding:10px;border:1px solid var(--line);border-radius:3px;background:var(--bg);width:100%}.form .f{grid-column:1/-1}
+.pin{display:flex;gap:8px;max-width:340px}
+.pay label{display:flex;gap:8px;padding:12px;border:1px solid var(--line);border-radius:4px;margin:6px 0}
+.trkb{display:flex;margin:12px 0}.trkb div{flex:1;text-align:center;font-size:12px;color:var(--mute);position:relative}
+.trkb div:before{content:"";display:block;height:6px;background:var(--line);margin-bottom:4px}.trkb .on{color:var(--grn);font-weight:700}.trkb .on:before{background:var(--grn)}
+.mod{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;place-items:center;z-index:20;padding:14px}.mod.o{display:grid}
+.mb{background:var(--card);padding:24px;border-radius:6px;max-width:380px;width:100%;display:grid;gap:12px}
+.mb input{padding:10px;border:1px solid var(--line);border-radius:3px;background:var(--bg)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#212121;color:#fff;padding:10px 18px;border-radius:4px;display:none;z-index:30}
+footer{background:#172337;color:#c9d1e0;text-align:center;padding:22px;margin-top:20px;font-size:13px}
+.bbf{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.bbf input,.bbf select{padding:10px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink)}
+.wp{position:relative;width:230px;margin:6px auto}.wheel{width:230px;height:230px;border-radius:50%;position:relative;border:6px solid var(--card);box-shadow:0 0 0 3px var(--line);background:conic-gradient(#2874f0 0 60deg,#fb641b 60deg 120deg,#178a3f 120deg 180deg,#e6396f 180deg 240deg,#d99a00 240deg 300deg,#6a3df0 300deg 360deg);transition:transform 3.5s cubic-bezier(.15,.8,.2,1)}
+.wheel span{position:absolute;left:50%;top:50%;color:#fff;font-weight:700;font-size:13px;width:54px;text-align:center}
+.ptr{position:absolute;top:-10px;left:50%;margin-left:-10px;border:10px solid transparent;border-top:20px solid var(--ink);z-index:2}
+.ct{border-collapse:collapse;width:100%}.ct th,.ct td{padding:12px;border:1px solid var(--line);text-align:left;vertical-align:top;min-width:170px}
+#cbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#172337;color:#fff;padding:8px 14px;border-radius:8px;display:none;gap:10px;align-items:center;z-index:9}
+#cbar .btn{padding:8px 14px}
+@media(max-width:760px){.lay,.cw,.pd{grid-template-columns:1fr}.fl{position:static}.sl{height:160px;padding:18px}}
+@media(prefers-reduced-motion:reduce){.trk{transition:none}}
+</style></head><body>
+<header>
+ <div class="logo" data-go="home">KartZone<small>Explore <b style="color:#fff">Plus</b> ✦</small></div>
+ <div class="sb"><input id="q" type="search" placeholder="Search for products, brands and more" aria-label="Search"><button id="qb">Search</button></div>
+ <button class="hb" id="spin">🎁 Spin</button><button class="hb" id="un">Login</button><button class="hb" data-go="orders">Orders</button>
+ <button class="hb" data-go="wish">♡<b id="wc">0</b></button><button class="hb" data-go="cart">🛒 Cart<b id="cc">0</b></button>
+ <button class="hb" id="th" aria-label="Dark mode">◐</button>
+</header>
+<nav class="cats" id="cats"></nav>
+<main id="m"></main>
+<footer>KartZone demo store · No real payments · Made as a college mini-project</footer>
+<div id="cbar"><span id="cn"></span><button class="btn b" id="cmpgo">Compare</button><button class="btn o" id="cmpx" style="color:#fff">Clear</button></div>
+<div class="mod" id="mod"><div class="mb" id="mb"></div></div><div id="toast" role="status"></div>
+<script>
+const CATS=[["Mobiles","📱"],["Laptops","💻"],["Audio","🎧"],["Fashion","👕"],["Home","🛋️"],["Beauty","💄"],["Toys","🧸"],["Grocery","🥑"]];
+const P=[
+["Nova 5G Smartphone 128GB","Mobiles","📱",24999,17999,4.4,12840,"#dbe7ff","6.7\" AMOLED display,50MP camera,5000mAh battery,5G ready"],
+["Pixel Lite Phone 64GB","Mobiles","📲",12999,8999,4.2,30211,"#e3f5ec","6.5\" HD+ display,13MP dual camera,Fast charging"],
+["AeroBook 14 Laptop i5","Laptops","💻",64990,46990,4.5,5432,"#e8e4ff","Intel i5 12th Gen,16GB RAM,512GB SSD,Windows 11"],
+["Student Laptop 15.6\"","Laptops","🖥️",38990,27490,4.1,8120,"#fff0d6","Ryzen 5,8GB RAM,512GB SSD,Backlit keyboard"],
+["BassX Wireless Earbuds","Audio","🎧",4999,1299,4.3,98210,"#ffe1e1","ENC calls,40hr playback,IPX5 water resistant"],
+["ThunderBox Speaker","Audio","🔊",3999,1799,4.4,20100,"#d9f0ff","20W sound,12hr battery,Waterproof"],
+["Classic Cotton T-Shirt","Fashion","👕",1299,399,4.1,45120,"#fde2f3","100% cotton,Regular fit,Machine washable"],
+["Urban Running Shoes","Fashion","👟",3999,1599,4.3,15870,"#e0f7e9","Lightweight mesh,Cushioned sole,Anti-slip"],
+["Denim Jacket Unisex","Fashion","🧥",3499,1399,4.0,6520,"#dfe9f7","Stretch denim,Slim fit,All-season"],
+["Ergo Office Chair","Home","🪑",9999,5499,4.2,7300,"#fbe9d0","Lumbar support,Adjustable height,Mesh back"],
+["Smart LED Bulb Pack (4)","Home","💡",1999,699,4.4,33100,"#fff7c2","16M colours,Voice control,9W B22"],
+["Non-stick Cookware Set","Home","🍳",3499,1499,4.2,9001,"#f0e6dd","5-piece set,Induction base,PFOA free"],
+["Vitamin C Face Serum","Beauty","🧴",999,349,4.3,51200,"#ffe6cf","30ml,Brightening,Dermatologist tested"],
+["Building Blocks 500pc","Toys","🧩",1499,599,4.6,12800,"#ffe0e8","500 pieces,Ages 6+,Storage box included"],
+["Premium Basmati Rice 5kg","Grocery","🍚",799,549,4.5,88000,"#f5f0e1","Aged 2 years,Long grain,Non-sticky"],
+["Cold Pressed Coconut Oil 1L","Grocery","🥥",699,449,4.4,23400,"#e6f2e0","100% pure,Chemical free,Glass bottle"]
+].map((a,i)=>({id:i,n:a[0],c:a[1],e:a[2],mrp:a[3],p:a[4],r:a[5],rv:a[6],bg:a[7],d:a[8].split(",")}));
+const S={v:"home",x:null,cart:{},wish:[],user:"",orders:[],q:"",cat:"",max:60000,rt:0,sort:"rel",pin:"",coupon:"",coins:0,use:false,cmp:[],rv:[],spun:"",bb:[]};
+const COUP={WELCOME10:{pct:10,l:"10% off"},SPIN5:{pct:5,l:"5% off"},SPIN15:{pct:15,l:"15% off"},FLAT200:{flat:200,min:1500,l:"₹200 off on ₹1,500+"}};
+const PR=[{c:"SPIN5"},{c:"SPIN15"},{c:"FLAT200"},{k:50},{c:"WELCOME10"},{k:10}],WL=["5%","15%","₹200","50🪙","10%","10🪙"];
+const $=id=>document.getElementById(id),inr=n=>"₹"+Math.round(n).toLocaleString("en-IN");
+const off=p=>Math.round((1-p.p/p.mrp)*100),esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eta=d=>new Date(Date.now()+d*864e5).toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
+try{const s=JSON.parse(localStorage.getItem("kz")||"{}");["cart","wish","user","orders","coins","coupon","rv","spun"].forEach(k=>s[k]!==undefined&&(S[k]=s[k]))}catch(e){}
+const save=()=>{try{localStorage.setItem("kz",JSON.stringify({cart:S.cart,wish:S.wish,user:S.user,orders:S.orders,coins:S.coins,coupon:S.coupon,rv:S.rv,spun:S.spun}))}catch(e){}};
+function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>e.style.display="none",1800)}
+function go(v,x){if(v==="pd"&&x!==null)S.rv=[x,...S.rv.filter(i=>i!==x)].slice(0,6);S.v=v;S.x=x;scrollTo(0,0);render()}
+function tot(){let mrp=0,pr=0,n=0;for(const i in S.cart){const q=S.cart[i];mrp+=P[i].mrp*q;pr+=P[i].p*q;n+=q}const c=COUP[S.coupon],cd=c&&pr>0&&(!c.min||pr>=c.min)?Math.round(c.pct?pr*c.pct/100:c.flat):0,base=pr-cd,coinD=S.use?Math.min(S.coins,Math.floor(base*.2)):0,del=pr&&pr<500?40:0;return{mrp,pr,n,disc:mrp-pr,cd,coinD,del,total:base-coinD+del,earn:Math.floor((base-coinD)/50)}}
+const card=p=>`<div class="pc" data-go="pd" data-x="${p.id}"><button class="w" data-w="${p.id}" aria-label="Wishlist">${S.wish.includes(p.id)?"♥":"♡"}</button>
+<div class="pic" style="background:${p.bg}">${p.e}</div><h4>${p.n}</h4><div><span class="rt">${p.r} ★</span> <span class="mute">(${p.rv.toLocaleString("en-IN")})</span></div>
+<div><span class="pr">${inr(p.p)}</span><span class="mrp">${inr(p.mrp)}</span><span class="off">${off(p)}% off</span></div><div class="mute">Free delivery</div><label class="cmp mute"><input type="checkbox" data-cmp="${p.id}" ${S.cmp.includes(p.id)?"checked":""}> Add to compare</label></div>`;
+let B=0;const SL=[["Big Savings Days","Up to 70% off on electronics","linear-gradient(90deg,#2874f0,#6a3df0)","Mobiles"],["Fashion Fest","Min 50% off on top styles","linear-gradient(90deg,#e6396f,#fb641b)","Fashion"],["Home Makeover","Furniture & kitchen from ₹449","linear-gradient(90deg,#0f9d70,#2874f0)","Home"]];
+const V={
+home(){const deals=[...P].sort((a,b)=>off(b)-off(a)).slice(0,8),top=[...P].sort((a,b)=>b.r-a.r).slice(0,8);
+return `<div class="ban"><div class="trk" id="trk">${SL.map(s=>`<div class="sl" style="background:${s[2]}"><h2>${s[0]}</h2><p>${s[1]}</p><button data-cat="${s[3]}">Shop now</button></div>`).join("")}</div><div class="dots" id="dots"></div></div>
+${bbox()}${rvsec()}<div class="sec"><h3>Deals of the Day <small>Biggest discounts right now</small></h3><div class="row">${deals.map(card).join("")}</div></div>
+<div class="sec"><h3>Top Rated Picks</h3><div class="grid">${top.map(card).join("")}</div></div>
+<div class="sec"><h3>All Products <small>${P.length} items</small></h3><div class="grid">${P.map(card).join("")}</div></div>`},
+list(){let L=P.filter(p=>(!S.cat||p.c===S.cat)&&p.n.toLowerCase().includes(S.q.toLowerCase())&&p.p<=S.max&&p.r>=S.rt);
+const s=S.sort;L.sort((a,b)=>s==="pa"?a.p-b.p:s==="pd"?b.p-a.p:s==="r"?b.r-a.r:s==="off"?off(b)-off(a):a.id-b.id);
+return `<div class="lay"><div class="fl"><h5>Filters</h5><div><h5>Category</h5><label><input type="radio" name="fc" value="" ${!S.cat?"checked":""}>All</label>${CATS.map(c=>`<label><input type="radio" name="fc" value="${c[0]}" ${S.cat===c[0]?"checked":""}>${c[0]}</label>`).join("")}</div>
+<div><h5>Max price: ${inr(S.max)}</h5><input type="range" id="fp" min="300" max="60000" step="100" value="${S.max}"></div>
+<div><h5>Customer rating</h5><label><input type="radio" name="fr" value="0" ${!S.rt?"checked":""}>Any</label><label><input type="radio" name="fr" value="4" ${S.rt==4?"checked":""}>4★ &amp; above</label><label><input type="radio" name="fr" value="4.4" ${S.rt==4.4?"checked":""}>4.4★ &amp; above</label></div></div>
+<div class="sec" style="margin:0"><h3>${S.q?`Results for "${esc(S.q)}"`:S.cat||"All products"} <small>${L.length} items</small></h3>
+<div class="tabs"><span class="mute">Sort By</span>${[["rel","Relevance"],["pa","Price: Low to High"],["pd","Price: High to Low"],["r","Rating"],["off","Discount"]].map(t=>`<button class="${s===t[0]?"on":""}" data-sort="${t[0]}">${t[1]}</button>`).join("")}</div>
+${L.length?`<div class="grid">${L.map(card).join("")}</div>`:`<p class="pad mute">No products found. Try removing a filter or searching another word.</p>`}</div></div>`},
+pd(id){const p=P[id];return `<div class="sec pd"><div><div class="big" style="background:${p.bg}">${p.e}</div>
+<div style="display:flex;gap:8px;margin-top:12px"><button class="btn b" style="flex:1" data-add="${id}">ADD TO CART</button><button class="btn" style="flex:1" data-buy="${id}">BUY NOW</button></div></div>
+<div><h1>${p.n}</h1><span class="rt">${p.r} ★</span> <span class="mute">${p.rv.toLocaleString("en-IN")} ratings</span>
+<p><span class="pr" style="font-size:30px">${inr(p.p)}</span><span class="mrp">${inr(p.mrp)}</span><span class="off">${off(p)}% off</span></p>
+<b>Available offers</b><ul><li>Bank Offer: 10% off on UPI payments (demo)</li><li>No-cost EMI from ${inr(p.p/6)}/month</li><li>Get extra ₹50 off on your first order</li></ul>
+<b>Delivery</b><div class="pin"><input id="pin" maxlength="6" inputmode="numeric" placeholder="Enter pincode" value="${S.pin}"><button class="btn o" id="pinb">Check</button></div><p id="pinr" class="mute">${S.pin?"Delivery by "+eta(3)+" · Free":""}</p>
+${histBox(p)}<b>Highlights</b><ul>${p.d.map(x=>`<li>${x}</li>`).join("")}</ul><b>Seller</b> <span class="mute">KartZone Retail · 7-day replacement</span></div></div>
+<div class="sec"><h3>Similar products</h3><div class="row">${P.filter(x=>x.c===p.c&&x.id!==id).concat(P.filter(x=>x.c!==p.c)).slice(0,5).map(card).join("")}</div></div>`},
+wish(){const L=P.filter(p=>S.wish.includes(p.id));return `<div class="sec"><h3>My Wishlist <small>${L.length} items</small></h3>${L.length?`<div class="grid">${L.map(card).join("")}</div>`:`<p class="pad mute">Your wishlist is empty. Tap the heart on any product to save it.</p>`}</div>`},
+cart(){const ids=Object.keys(S.cart),T=tot();if(!ids.length)return `<div class="sec pad" style="text-align:center"><div style="font-size:70px">🛒</div><h3 style="border:0">Your cart is empty</h3><button class="btn l" data-go="home">Shop now</button></div>`;
+return `<div class="cw"><div class="sec">${ids.map(i=>{const p=P[i];return `<div class="ci"><div class="t" style="background:${p.bg}">${p.e}</div><div style="flex:1"><b>${p.n}</b><div><span class="pr">${inr(p.p)}</span><span class="mrp">${inr(p.mrp)}</span><span class="off">${off(p)}% off</span></div>
+<div class="q" style="margin:8px 0"><button data-q="${i}" data-d="-1">−</button> <b>${S.cart[i]}</b> <button data-q="${i}" data-d="1">+</button> &nbsp; <button class="btn o" style="padding:4px 10px;width:auto;height:auto;border-radius:3px" data-rm="${i}">Remove</button></div></div></div>`}).join("")}
+<div class="pad" style="text-align:right"><button class="btn" data-go="co">PLACE ORDER</button></div></div>${summary(T)}</div>`},
+co(){const T=tot();if(!T.n)return V.cart();return `<div class="cw"><div><div class="sec"><h3>1 · Delivery address</h3><div class="pad form"><input id="an" placeholder="Name" value="${esc(S.user)}"><input id="ap" placeholder="10-digit mobile" inputmode="numeric" maxlength="10"><input id="az" placeholder="Pincode" maxlength="6" value="${S.pin}"><input id="ac" placeholder="City"><input class="f" id="aa" placeholder="Address (house no, street, area)"></div></div>
+<div class="sec"><h3>2 · Payment</h3><div class="pad pay"><label><input type="radio" name="pm" value="UPI" checked>UPI (PhonePe / GPay / Paytm)</label><label><input type="radio" name="pm" value="Card">Credit / Debit card</label><label><input type="radio" name="pm" value="COD">Cash on delivery</label><div id="err" style="color:var(--red)"></div><button class="btn" id="pl">CONFIRM ORDER · ${inr(T.total)}</button></div></div></div>${summary(T)}</div>`},
+cmp(){const L=S.cmp.map(i=>P[i]);if(L.length<2)return `<div class="sec pad">Tick "Add to compare" on at least 2 products to see them side by side.<br><br><button class="btn l" data-go="home">Browse products</button></div>`;
+const bp=Math.min(...L.map(p=>p.p)),hr=Math.max(...L.map(p=>p.r));
+const rows=[["",p=>`<div style="font-size:48px">${p.e}</div><b>${p.n}</b>`],["Price",p=>`<b>${inr(p.p)}</b>${p.p===bp?' <span class="off">Lowest</span>':""}`],["Discount",p=>off(p)+"% off"],["Rating",p=>`<span class="rt">${p.r} ★</span>${p.r===hr?' <span class="off">Best rated</span>':""}`],["Reviews",p=>p.rv.toLocaleString("en-IN")],["Features",p=>p.d.join("<br>")],["",p=>`<button class="btn b" data-add="${p.id}">ADD TO CART</button>`]];
+return `<div class="sec"><h3>Compare products</h3><div style="overflow-x:auto"><table class="ct">${rows.map(r=>`<tr><th>${r[0]}</th>${L.map(p=>`<td>${r[1](p)}</td>`).join("")}</tr>`).join("")}</table></div></div>`},
+orders(){if(!S.orders.length)return `<div class="sec pad"><h3 style="border:0">No orders yet</h3><button class="btn l" data-go="home">Start shopping</button></div>`;
+return S.orders.map(o=>{const st=Math.min(3,Math.floor((Date.now()-o.t)/12000));return `<div class="sec pad"><b>Order ${o.id}</b> <span class="mute">· ${new Date(o.t).toLocaleString("en-IN")} · ${o.pm} · ${inr(o.total)}</span>
+<div class="mute">Ship to ${esc(o.name)}, ${esc(o.addr)}</div><div style="margin:8px 0">${o.items.map(i=>`${P[i[0]].e} ${P[i[0]].n} × ${i[1]}`).join("<br>")}</div>
+<div class="trkb">${["Ordered","Shipped","Out for delivery","Delivered"].map((s,i)=>`<div class="${i<=st?"on":""}">${s}</div>`).join("")}</div></div>`}).join("")}
+};
+function summaryOld(T){return `<div class="sec pd2 pad"><b class="mute">PRICE DETAILS</b><div><span>Price (${T.n} items)</span><span>${inr(T.mrp)}</span></div><div><span>Discount</span><span style="color:var(--grn)">−${inr(T.disc)}</span></div><div><span>Delivery charges</span><span>${T.del?inr(T.del):"Free"}</span></div><div class="t"><span>Total amount</span><span>${inr(T.total)}</span></div><div style="color:var(--grn);font-weight:600">You will save ${inr(T.disc)} on this order</div></div>`}
+function render(){$("spin").textContent="🎁 Spin · 🪙"+S.coins;$("cbar").style.display=S.cmp.length?"flex":"none";$("cn").textContent=S.cmp.length+" to compare";$("cc").textContent=tot().n;$("wc").textContent=S.wish.length;$("un").textContent=S.user?"Hi, "+S.user.split(" ")[0]:"Login";
+$("cats").innerHTML=CATS.map(c=>`<button data-cat="${c[0]}"><span>${c[1]}</span>${c[0]}</button>`).join("");
+$("m").innerHTML=V[S.v](S.x);if(S.v==="home")banner()}
+function banner(){const t=$("trk");if(!t)return;t.style.transform=`translateX(-${B*100}%)`;$("dots").innerHTML=SL.map((s,i)=>`<i class="${i===B?"on":""}"></i>`).join("")}
+setInterval(()=>{if(S.v==="home"){B=(B+1)%SL.length;banner()}else if(S.v==="orders")render()},4000);
+function loginBox(){$("mb").innerHTML=`<h3 style="margin:0">Login to KartZone</h3><input id="ln" placeholder="Your name" value="${esc(S.user)}" autocomplete="name"><input placeholder="Mobile / email (demo – not stored)"><button class="btn" id="lg">Continue</button>${S.user?'<button class="btn o" id="lo">Logout</button>':""}`;$("mod").classList.add("o")}
+function summary(T){return `<div class="sec pd2 pad"><b class="mute">PRICE DETAILS</b><div><span>Price (${T.n} items)</span><span>${inr(T.mrp)}</span></div><div><span>Discount</span><span style="color:var(--grn)">−${inr(T.disc)}</span></div>${T.cd?`<div><span>Coupon (${S.coupon})</span><span style="color:var(--grn)">−${inr(T.cd)}</span></div>`:""}${T.coinD?`<div><span>KartCoins used</span><span style="color:var(--grn)">−${inr(T.coinD)}</span></div>`:""}<div><span>Delivery charges</span><span>${T.del?inr(T.del):"Free"}</span></div><div class="t"><span>Total amount</span><span>${inr(T.total)}</span></div><div style="color:var(--grn);font-weight:600">You will save ${inr(T.disc+T.cd+T.coinD)} on this order</div>
+<div class="pin" style="margin-top:8px"><input id="cin" placeholder="Coupon code" value="${esc(S.coupon)}"><button class="btn o" id="capp">Apply</button></div><div class="mute">Try WELCOME10 or FLAT200, or win more in Daily Spin</div>
+<label style="display:flex;gap:6px;margin-top:6px"><input type="checkbox" data-use ${S.use?"checked":""}> Use KartCoins (🪙${S.coins} available, up to 20%)</label><div class="mute">🪙 You will earn ${T.earn} KartCoins on this order</div></div>`}
+function histBox(p){const a=[];for(let k=0;k<12;k++)a.push(k===11?p.p:Math.round(p.p*(1.08+.15*Math.sin(k*1.7+p.id*2.3)+.07*Math.cos(k*3.1+p.id))));
+const mn=Math.min(...a),mx=Math.max(...a),av=a.reduce((x,y)=>x+y,0)/12,sp=(mx-mn)||1,pt=a.map((v,k)=>`${k*27+6},${76-(v-mn)/sp*66}`).join(" ");
+const [vt,col]=p.p<=mn?["Lowest price in 12 weeks – great time to buy","var(--grn)"]:p.p<av?["Below the 12-week average – a good deal","var(--grn)"]:["Above the 12-week average – tap ♡ and wait for a drop","var(--red)"];
+return `<b>Price history</b><svg viewBox="0 0 310 84" width="100%" style="max-width:340px;display:block" role="img" aria-label="Price history chart"><polyline points="${pt}" fill="none" stroke="var(--blue)" stroke-width="2.5"/><circle cx="303" cy="${76-(p.p-mn)/sp*66}" r="4.5" fill="${col}"/></svg><div class="mute">12-week low ${inr(mn)} · high ${inr(mx)}</div><p style="color:${col};font-weight:700;margin:4px 0 10px">${vt}</p>`}
+function bbox(){return `<div class="sec pad"><b style="font-size:18px">🎯 Budget Buddy</b> <span class="mute">Enter your budget and we build the best-rated basket for it.</span><div class="bbf"><input id="bbv" type="number" min="300" step="100" placeholder="Budget in ₹"><select id="bbc"><option value="">All categories</option>${CATS.map(c=>`<option>${c[0]}</option>`).join("")}</select><button class="btn l" id="bbgo">Build my basket</button></div><div id="bbr"></div></div>`}
+function rvsec(){const L=S.rv.map(i=>P[i]).filter(Boolean);return L.length?`<div class="sec"><h3>Recently viewed</h3><div class="row">${L.map(card).join("")}</div></div>`:""}
+function bbRun(){const b=+$("bbv").value,cat=$("bbc").value;if(b<300){$("bbr").innerHTML='<p class="mute">Enter a budget of at least ₹300.</p>';return}
+const L=P.filter(p=>!cat||p.c===cat).sort((x,z)=>z.r-x.r||off(z)-off(x)),seen=new Set(),pk=[];let s=0;
+for(const p of L)if(!seen.has(p.c)&&s+p.p<=b){pk.push(p);seen.add(p.c);s+=p.p}
+for(const p of L)if(!pk.includes(p)&&s+p.p<=b){pk.push(p);s+=p.p}
+S.bb=pk.map(p=>p.id);
+$("bbr").innerHTML=pk.length?`<div class="row" style="margin-top:10px">${pk.map(card).join("")}</div><p><b>${pk.length} items · ${inr(s)}</b> of ${inr(b)} · you save ${inr(pk.reduce((a,p)=>a+p.mrp-p.p,0))} <button class="btn b" id="bbadd">Add all to cart</button></p>`:'<p class="mute">Nothing fits that budget. Try a higher amount.</p>'}
+function spinBox(){const done=S.spun===new Date().toDateString();
+$("mb").innerHTML=`<h3 style="margin:0">🎁 Daily Lucky Spin</h3><div class="wp"><i class="ptr"></i><div class="wheel" id="wheel">${WL.map((w,i)=>`<span style="transform:rotate(${i*60+30}deg) translate(-50%,-88px)">${w}</span>`).join("")}</div></div><p id="sr" class="mute" style="text-align:center">${done?"You already spun today. Come back tomorrow!":"Spin once a day to win coupons or KartCoins."}</p><button class="btn" id="dospin" ${done?"disabled":""}>SPIN</button>`;$("mod").classList.add("o")}
+function spin(){S.spun=new Date().toDateString();const idx=[0,0,1,2,3,3,4,4,5,5,5][Math.floor(Math.random()*11)];$("dospin").disabled=true;
+$("wheel").style.transform=`rotate(${2160-(idx*60+30)}deg)`;
+setTimeout(()=>{const w=PR[idx];let m;if(w.c){S.coupon=w.c;m=`You won ${w.c}: ${COUP[w.c].l}. It is applied to your cart!`}else{S.coins+=w.k;m=`You won ${w.k} KartCoins!`}save();$("sr").textContent=m;render()},3700)}
+function add(id,n=1){S.cart[id]=(S.cart[id]||0)+n;save();render()}
+document.addEventListener("click",e=>{const t=e.target.closest("button,[data-go],input");if(!t)return;const d=t.dataset;
+ if(e.target.closest(".cmp")&&!e.target.matches("input"))return;
+ if(d.cmp!==undefined){const i=+d.cmp;if(t.checked){if(S.cmp.length>=3){t.checked=false;toast("Compare up to 3 products");return}S.cmp.push(i)}else S.cmp=S.cmp.filter(x=>x!==i);render();return}
+ if(d.use!==undefined){S.use=t.checked;render();return}
+ if(t.id==="capp"){const c=$("cin").value.trim().toUpperCase();if(c&&!COUP[c]){S.coupon="";toast("Invalid coupon code")}else{S.coupon=c;toast(c?COUP[c].l+" applied":"Coupon removed")}save();render();return}
+ if(t.id==="spin"){spinBox();return}if(t.id==="dospin"){spin();return}
+ if(t.id==="cmpgo"){go("cmp");return}if(t.id==="cmpx"){S.cmp=[];render();return}
+ if(t.id==="bbgo"){bbRun();return}
+ if(t.id==="bbadd"){S.bb.forEach(i=>add(i));toast("Basket added to cart");go("cart");return}
+ if(d.w!==undefined){e.stopPropagation();const i=+d.w;S.wish=S.wish.includes(i)?S.wish.filter(x=>x!==i):[...S.wish,i];save();render();return}
+ if(d.add!==undefined){add(d.add);toast("Added to cart")}
+ else if(d.buy!==undefined){add(d.buy);go("co")}
+ else if(d.q){const i=d.q;S.cart[i]+=+d.d;if(S.cart[i]<1)delete S.cart[i];save();render()}
+ else if(d.rm){delete S.cart[d.rm];save();render()}
+ else if(d.cat!==undefined){S.cat=d.cat;S.q="";$("q").value="";go("list")}
+ else if(d.sort){S.sort=d.sort;render()}
+ else if(d.go){go(d.go,d.x!==undefined?+d.x:null)}
+ else if(t.id==="qb")doSearch();
+ else if(t.id==="un")loginBox();
+ else if(t.id==="th"){const r=document.documentElement,dk=getComputedStyle(r).getPropertyValue("--bg").trim()==="#10141c";r.dataset.theme=dk?"light":"dark"}
+ else if(t.id==="pinb"){const v=$("pin").value.trim();if(!/^\d{6}$/.test(v))$("pinr").textContent="Enter a valid 6-digit pincode";else{S.pin=v;$("pinr").textContent="Delivery by "+eta(3)+" · Free"}}
+ else if(t.id==="lg"){const n=$("ln").value.trim();if(n){S.user=n;save();$("mod").classList.remove("o");render();toast("Welcome, "+n)}}
+ else if(t.id==="lo"){S.user="";save();$("mod").classList.remove("o");render()}
+ else if(t.id==="pl")place();
+});
+$("mod").addEventListener("click",e=>{if(e.target.id==="mod")$("mod").classList.remove("o")});
+document.addEventListener("change",e=>{const t=e.target;
+ if(t.name==="fc"){S.cat=t.value;render()}else if(t.name==="fr"){S.rt=+t.value;render()}else if(t.id==="fp"){S.max=+t.value;render()}});
+function doSearch(){S.q=$("q").value.trim();S.cat="";go("list")}
+$("q").addEventListener("keydown",e=>{if(e.key==="Enter")doSearch()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("mod").classList.remove("o")});
+function place(){const n=$("an").value.trim(),p=$("ap").value.trim(),z=$("az").value.trim(),c=$("ac").value.trim(),a=$("aa").value.trim();
+ if(n.length<2||!/^\d{10}$/.test(p)||!/^\d{6}$/.test(z)||c.length<2||a.length<5){$("err").textContent="Fill every field: name, 10-digit mobile, 6-digit pincode, city and address.";return}
+ const T=tot(),pm=document.querySelector('input[name=pm]:checked').value,id="OD"+Date.now().toString().slice(-9);
+ S.orders.unshift({id,t:Date.now(),name:n,addr:a+", "+c+" - "+z,pm,total:T.total,items:Object.entries(S.cart)});S.coins=S.coins-T.coinD+T.earn;S.coupon="";S.use=false;S.cart={};S.pin=z;save();
+ $("m").innerHTML=`<div class="sec pad" style="text-align:center"><div style="font-size:64px">✅</div><h2>Order placed successfully!</h2><p>Order ID <b>${id}</b> · Total ${inr(T.total)} via ${pm}</p><p>🪙 You earned <b>${T.earn}</b> KartCoins!</p><p>Expected delivery by <b>${eta(3)}</b></p><button class="btn l" data-go="orders">Track order</button> <button class="btn o" data-go="home">Continue shopping</button></div>`;$("cc").textContent=0;scrollTo(0,0)}
+render();
+</script></body></html>
